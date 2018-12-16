@@ -70,7 +70,7 @@ export default class Axios {
     }
 ```
 
-#### 三、flex布局
+### 三、flex布局
 
 #### 3.1 使用flex布局
 
@@ -148,3 +148,4 @@ path中配置动态参数：/about/:id
 在页面获取参数：this.props.match.params.id
 ```
 
+### 
