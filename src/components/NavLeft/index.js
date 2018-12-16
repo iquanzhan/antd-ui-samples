@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
+import {NavLink} from "react-router-dom";
 
 import './index.less';
 
-import { Menu, Icon } from "antd";
+import { Menu } from "antd";
 import MenuConfig from "../../config/menuConfig";
 
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 
 class Index extends Component {
     state = {
         menuTreeNode: []
     }
-
 
     componentDidMount() {
 
@@ -32,7 +31,9 @@ class Index extends Component {
                     </SubMenu>
                 );
             }
-            return <Menu.Item key={item.key}>{item.title}</Menu.Item>;
+            return <Menu.Item key={item.key}>
+            <NavLink to={item.key}>{item.title}</NavLink>
+            </Menu.Item>;
         });
 
     }

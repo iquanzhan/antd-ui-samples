@@ -70,7 +70,7 @@ export default class Axios {
     }
 ```
 
-### 三、flex布局
+#### 三、flex布局
 
 #### 3.1 使用flex布局
 
@@ -99,6 +99,52 @@ form  {
 	align-self:属性值同align-items
 ```
 
+### 四、React Router 4.0
 
+#### 4.1 路由模块安装
 
-#### 
+```
+yarn add react-router-dom --save
+```
+
+#### 4.2核心用法
+
+4.2.1 HashRouter和BrowserRouter区别
+
+​	HashRouter：http://www.chengxiaoxiao.com/#/home/index
+
+​	BrowserRouter：http://www.chengxiaoxiao/home/index
+
+HashRouter会包括一个默认的#
+
+4.2.2 常用属性
+
+```
+Route: path,exact(完全匹配),component,render
+Switch:此组件item中如果有匹配就命中。
+NavLink/Link/Redirect: to 	//类似超链接，进行路由跳转,to属性为跳转的地址
+```
+
+4.2.3 最简单用法
+
+```
+            <HashRouter>
+                <div>
+                    <ul>
+                        <li><Link to="/">首页</Link></li>
+                        <li><Link to="/about">关于</Link></li>
+                    </ul>
+                    <Route path="/" exact={true} component={Admin}></Route>
+                    <Route path="/about" component={Index}></Route>
+                </div>
+            </HashRouter>
+```
+
+4.2.4 动态路由
+
+```
+path中配置动态参数：/about/:id
+
+在页面获取参数：this.props.match.params.id
+```
+

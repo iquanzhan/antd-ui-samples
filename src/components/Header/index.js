@@ -52,7 +52,7 @@ class Index extends Component {
                 <Row className="header-top">
                     <Col span="24">
                         <span>欢迎您,{this.state.userName}</span>
-                        <a href="#">退出</a>
+                        <a href="javascrpt:void();">退出</a>
                     </Col>
                 </Row>
                 <Row className="breadcrumb">
@@ -62,7 +62,7 @@ class Index extends Component {
                     <Col span="20" className="weather">
                         <span className="date">{this.state.sysTime}</span>
                         <span className="weather-img">
-                            <img src={this.state.weatherPic} />
+                            <img src={this.state.weatherPic} alt="天气图片" />
                         </span>
                         <span className="weather-detail">
                             {this.state.weather}
