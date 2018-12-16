@@ -148,4 +148,9 @@ path中配置动态参数：/about/:id
 在页面获取参数：this.props.match.params.id
 ```
 
-### 
+### 五、UI组件
+
+5.1使用日期组件
+
+​	使用日期组件需要安装moment模块：`yarn add moment --save`
+
