@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Form, Input, Radio, InputNumber, Select, Switch, DatePicker, TimePicker, Upload, Button, Icon, Checkbox } from 'antd';
+import { Card, Form, Input, Radio, InputNumber, Select, Switch, DatePicker, TimePicker, Upload, Button, Icon, Checkbox, message } from 'antd';
 import './form.less';
 import moment from 'moment';
 
@@ -13,11 +13,18 @@ class Register extends Component {
         userImg: ''
     }
 
+    handleSubmit=()=> {
+        let userInfo = this.props.form.getFieldsValue();
+        message.success(JSON.stringify(userInfo));
+    }
+
     getBase64 = (img, callback) => {
         const reader = new FileReader();
         reader.addEventListener('load', () => callback(reader.result));
         reader.readAsDataURL(img);
     }
+
+
 
     handleChange = (info) => {
         if (info.file.status === 'uploading') {
@@ -178,7 +185,7 @@ class Register extends Component {
                                         action="//jsonplaceholder.typicode.com/posts/"
                                         onChange={this.handleChange}
                                     >
-                                        {this.state.userImg ? <img src={this.state.userImg} /> : <Icon type="plus" />}
+                                        {this.state.userImg ? <img src={this.state.userImg} alt="用户头像" /> : <Icon type="plus" />}
                                     </Upload>
                                 )
                             }
@@ -190,7 +197,7 @@ class Register extends Component {
                                 )
                             }
                         </FormItem>
-                        
+
                         <FormItem {...offsetLayout}>
                             <Button type="primary" onClick={this.handleSubmit}>注册</Button>
                         </FormItem>
