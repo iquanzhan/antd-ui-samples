@@ -14,6 +14,7 @@ import Gallery from "./pages/ui/gallery"
 import Carousel from "./pages/ui/carousels";
 import FormLogin from "./pages/form/login";
 import FormRegister from "./pages/form/register";
+import EditTable from "./pages/table/EditTable";
 
 
 class Router extends Component {
@@ -35,7 +36,8 @@ class Router extends Component {
                                 <Route path="/admin/ui/carousel" component={Carousel}></Route>
                                 <Route path="/admin/form/login" component={FormLogin}></Route>
                                 <Route path="/admin/form/reg" component={FormRegister}></Route>
-                                <Route path="/admin /table/basic" component={FormRegister}></Route>
+                                <Route path="/admin/table/basic" component={FormRegister}></Route>
+                                <Route path="/admin/table/edit" component={EditTable}></Route>
                                 <Route component={NoMatch}></Route>
                             </Switch>
                         </Admin>
