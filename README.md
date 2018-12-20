@@ -154,3 +154,113 @@ path中配置动态参数：/about/:id
 
 ​	使用日期组件需要安装moment模块：`yarn add moment --save`
 
+### 六、axios组件封装
+
+#### 6.1 JsonP和ajax封装
+
+```
+export default class Axios {
+    static jsonp(options) {
+        return new Promise((resolve, reject) => {
+            JsonP(options.url, {
+                param: 'callback'
+            }, function (err, response) {
+                if (response.status === 'success') {
+                    resolve(response);
+                } else {
+                    reject(response.messsage);
+                }
+            })
+        });
+    }
+
+    static ajax(options) {
+        let baseUrl = "https://easy-mock.com/mock/5c17a07740c07229aa2e6022/api";
+
+        return new Promise((resolve, reject) => {
+            axios({
+                url: options.url,
+                method: 'get',
+                baseURL: baseUrl,
+                timeout: 5000,
+                params: (options.data && options.data.params) || ''
+            }).then((response) => {
+                if (response.status === 200) {
+                    let res = response.data;
+                    if (res.code === 0) {
+                        resolve(res.result);
+                    }
+                    else {
+                        Modal.info({
+                            title: "提示",
+                            content: res.msg
+                        })
+                    }
+                }
+                else {
+                    reject(response.data);
+                }
+            })
+        });
+
+    }
+}
+```
+
+6.2 统一处理加载中动画
+
+1.增加至入口文件html
+
+```2
+ <div class="ajax-loading" id="ajaxLoading" style="display: none;">
+        <div class="overlay"></div>
+        <div class="loading">
+            <img src="https://media.number-7.cn/ebike-h5/static/images/common/loading.gif" alt="">
+            <span>加载中，请稍后...</span>
+        </div>
+    </div>
+```
+
+2.引用loading.less文件
+
+```
+/** load **/
+.ajax-loading{
+    display: none;
+    .loading{
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      padding:0 40px;
+      height: 80px;
+      line-height: 80px;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 6px;
+      text-align: center;
+      z-index: 9999;
+      font-size:@fontD;
+      color:#fff;
+      img{
+        width: 32px;
+        vertical-align: middle;
+      }
+      span{
+        margin-left:12px;
+      }
+    }
+    .overlay{
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 9998;
+      background: rgb(255, 255, 255);
+      opacity: 0.1;
+    }
+  }
+  
+  /****/
+```
+
